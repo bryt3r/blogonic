@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/post/create', [PostController::class, 'create'])->middleware('auth')->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->middleware('auth')->name('post.store');
+Route::get('/posts/view/{slug}', [PostController::class, 'show'])->name('post.show');
+Route::post('/posts/{slug}/comment', [PostController::class, 'add_comment'])->middleware('auth')->name('post.add_comment');
+Route::post('/posts/{slug}/like', [PostController::class, 'like'])->middleware('auth')->name('post.like');
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return 'home page';
+    // return view('welcome');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
