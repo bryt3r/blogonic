@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #97a3cb;
+    font-size: 100%;
+    font-weight: 200;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#navbar {
+    padding: 8px;
+    width: 100vw;
+    color: white;
+    background-color: purple;
+}
+
+.nav_links {
+    width: 40%;
+}
+
+
+#site_logo {
+    font-size: 36px;
+}
+
+.menu_icon {
+    display: none;
+}
+
+#main {
+    width: 100vw;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex_row {
+    flex-direction: row;
+}
+
+.flex_col {
+    flex-direction: column;
+}
+
+.justify_btw {
+    justify-content: space-between;
+}
+
+.justify_arnd {
+    justify-content: space-around;
+}
+
+.align_ctr {
+    align-items: center;
+}
+
+.white_border {
+    border: 1px solid white;
+}
+
+.margin_ctr {
+    margin: 0px auto;
+}
+
+.post_box_icon {
+    border-radius: 10px;
+    padding: 6px 12px;
+}
+
+#posts_wrapper, #post_wrapper {
+    width: 60%;
+    padding: 5px;
+}
+
+#comments_wrapper {
+    width: 100%
+}
+
+.post_box {
+    cursor: pointer;
+    background-color: rgb(38, 38, 69);
+    width: 90%;
+    border-radius: 12px;
+    padding: 16px 8px;
+    margin-bottom: 15px;
+    min-height: 200px;
+}
+
+.comment_box {
+    padding: 20px ;
+    width: 85%;
+    border-bottom: 0.3px solid white;
+    background-color: rgb(48, 48, 82);
+}
+
+
+.floating_icon {
+    padding: 16px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 16px rgb(120, 105, 207);
+    background-color: purple;
+    opacity: 0.9;
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    right: 20vw;
+    z-index: 9;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+
+
+    .floating_icon {
+        right: 10px;
+    }
+
+    .nav_links {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu_icon {
+        padding: 6px;
+        cursor: pointer;
+        display: block;
+        border-radius: 12px;
+    }
+
+
+    #posts_wrapper, #post_wrapper {
+        width: 100%;
+    }
+
+    .post_box {
+        padding: 8px;
+        width: 95%;
+        min-height: 150px;
+    }
+
+   
+
+    .mobile_nav {
+        padding: 8px 20px;
+        z-index: 9;
+        display: flex;
+        width: fit-content;
+        height: 40vh;
+        background-color: purple;
+        position: absolute;
+        top: 60px;
+        right: -15px;
+    }
+
+
+}
