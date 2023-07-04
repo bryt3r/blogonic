@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('comments', 'likes')->paginate(10);
-        return view('posts.index');
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -49,8 +49,9 @@ class PostController extends Controller
      */
     public function show(string $slug)
     {
-        $post = Post::where('slug', $slug)->with('comments', 'likes')->get();
-        return $post;
+        $post = Post::with('comments', 'likes')->where('slug', $slug)->firstOrFail();
+        // return $post;
+        return view('posts.post')->with('post', $post);
     }
 
     /**

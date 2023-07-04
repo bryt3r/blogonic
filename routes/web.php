@@ -25,7 +25,7 @@ Route::post('/posts/{slug}/like', [PostController::class, 'like'])->middleware('
 Route::get('/', function () {
     return 'home page';
     // return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
