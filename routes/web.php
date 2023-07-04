@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/post/create', [PostController::class, 'create'])->middleware('auth');
-Route::post('/post/create', [PostController::class, 'store'])->middleware('auth');
-Route::get('/posts/view/{slug}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/post/create', [PostController::class, 'create'])->middleware('auth')->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->middleware('auth')->name('post.store');
+Route::get('/posts/view/{slug}', [PostController::class, 'show'])->name('post.show');
+Route::post('/posts/{slug}/comment', [PostController::class, 'add_comment'])->middleware('auth')->name('post.add_comment');
+Route::post('/posts/{slug}/like', [PostController::class, 'like'])->middleware('auth')->name('post.like');
 
 Route::get('/', function () {
     return 'home page';

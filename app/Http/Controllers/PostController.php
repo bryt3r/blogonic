@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('comments', 'likes')->paginate(10);
-        return $posts;
+        return view('posts.index');
     }
 
     /**
@@ -37,7 +40,8 @@ class PostController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return 'Post Created';
+        return back();
+
     }
 
     /**
@@ -55,6 +59,31 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //
+    }
+
+
+    public function add_comment(StoreCommentRequest $request, String $slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        Comment::create([
+            'content' => $request->content,
+             'user_id' => $request->user()->id,
+             'post_id' => $post->id,
+            ]);
+            
+
+        return back();
+    }
+
+
+    public function like_post(Request $request, String $slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        Like::create([
+            'post_id' => $post->id,
+        ]);
+
+        return back();
     }
 
     /**
