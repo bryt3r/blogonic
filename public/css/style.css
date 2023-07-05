@@ -8,9 +8,10 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-color: #97a3cb;
+    background-color: rgba(128, 0, 128, 0.3);
     font-size: 100%;
-    font-weight: 200;
+    /* font-weight: 200; */
+    /* font-family: Arial, Helvetica, sans-serif; */
     text-rendering: optimizeLegibility;
     line-height: 1.5;
     letter-spacing: 1px;
@@ -83,12 +84,17 @@ a:hover {
 
 .post_box_icon {
     border-radius: 10px;
-    padding: 6px 12px;
+    width: 50px;
+    padding: 6px;
 }
 
-#posts_wrapper, #post_wrapper {
+#posts_wrapper,
+#post_wrapper {
     width: 60%;
-    padding: 5px;
+    padding: 50px 5px;
+    font-weight: 100;
+    background-color: rgb(38, 38, 69);
+
 }
 
 #comments_wrapper {
@@ -97,19 +103,86 @@ a:hover {
 
 .post_box {
     cursor: pointer;
-    background-color: rgb(38, 38, 69);
+    /* background-color: rgb(38, 38, 69); */
     width: 90%;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     padding: 16px 8px;
     margin-bottom: 15px;
     min-height: 200px;
+    border-bottom: 0.1px solid rgb(64, 64, 64);
+}
+
+.post_box_body {
+    width: 80%;
+}
+
+.post_info {
+    width: 100%;
+    border-bottom: 0.1px solid gray;
+}
+
+.content_box {
+    width: 100%;
+    padding: 6px;
+}
+
+.user_avatar {
+    padding: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: purple;
 }
 
 .comment_box {
-    padding: 20px ;
+    padding: 20px;
     width: 85%;
-    border-bottom: 0.3px solid white;
     background-color: rgb(48, 48, 82);
+}
+
+#comment_form {
+    margin-top: 50px;
+    width: 80%;
+}
+
+#comment_form textarea {
+    padding: 3px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#comment_form textarea:focus {
+    
+    border: 1px solid purple;
+}
+
+#comment_form button {
+    cursor: pointer;
+    color: white;
+    background-color: purple;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+.content_wrapper {
+    width: 100%;
+    padding: 6px;
+}
+
+.post_box_icons {
+    padding: 6px;
+}
+
+#back_icon {
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 30px;
+    font-size: 30px;
+    text-align: left;
+    width: 100%;
 }
 
 
@@ -124,6 +197,13 @@ a:hover {
     bottom: 20px;
     right: 20vw;
     z-index: 9;
+}
+
+#footer {
+    justify-content: center;
+    padding: 8px;
+    width: 100vw;
+    background-color: rgb(99, 0, 99);
 }
 
 
@@ -149,17 +229,24 @@ a:hover {
     }
 
 
-    #posts_wrapper, #post_wrapper {
+    #posts_wrapper,
+    #post_wrapper {
         width: 100%;
     }
 
     .post_box {
         padding: 8px;
         width: 95%;
-        min-height: 150px;
+        min-height: 200px;
     }
 
-   
+    .post_box_body {
+        flex-direction: column;
+    }
+
+    .post_box_icons {
+        flex-direction: row;
+    }
 
     .mobile_nav {
         padding: 8px 20px;

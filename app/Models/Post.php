@@ -10,7 +10,6 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
         'content'
     ];
 
@@ -26,7 +25,7 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function author() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 }

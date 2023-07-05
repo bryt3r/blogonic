@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -33,15 +34,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'slug' => $request->content,
-            'user_id' => $request->user()->id,
-        ]);
+        $slug = Str::slug(substr($request->content, 0, 15)) . uniqid('-');
+        $post = new Post;
+        $post->content = $request->content;
+        $post->slug = $slug;
+        $post->user_id = $request->user()->id;
+        $post->save();
+
 
         return back();
-
     }
 
     /**
@@ -66,12 +67,12 @@ class PostController extends Controller
     public function add_comment(StoreCommentRequest $request, String $slug)
     {
         $post = Post::where('slug', $slug)->first();
-        Comment::create([
-            'content' => $request->content,
-             'user_id' => $request->user()->id,
-             'post_id' => $post->id,
-            ]);
-            
+        $comment = new Comment;
+        $comment->content = $request->content;
+        $comment->user_id = $request->user()->id;
+        $comment->post_id = $post->id;
+        $comment->save();
+
 
         return back();
     }
@@ -80,9 +81,9 @@ class PostController extends Controller
     public function like_post(Request $request, String $slug)
     {
         $post = Post::where('slug', $slug)->first();
-        Like::create([
-            'post_id' => $post->id,
-        ]);
+        $like = new Like;
+        $like->post_id = $post->id;
+        $like->save();
 
         return back();
     }

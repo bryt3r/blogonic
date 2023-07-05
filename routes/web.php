@@ -20,7 +20,7 @@ Route::get('/post/create', [PostController::class, 'create'])->middleware('auth'
 Route::post('/post', [PostController::class, 'store'])->middleware('auth')->name('post.store');
 Route::get('/posts/view/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts/{slug}/comment', [PostController::class, 'add_comment'])->middleware('auth')->name('post.add_comment');
-Route::post('/posts/{slug}/like', [PostController::class, 'like'])->middleware('auth')->name('post.like');
+Route::post('/posts/{slug}/like', [PostController::class, 'like_post'])->middleware('auth')->name('post.like');
 
 Route::get('/', function () {
     return 'home page';

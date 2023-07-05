@@ -75,8 +75,8 @@
         </div>
     
             <!-- FOOTER  -->
-            <footer id="footer">
-                    
+            <footer id="footer" class="flex margin_ctr">
+               <span>&copy; 2023 </span>    
             </footer>
     </div>
 
