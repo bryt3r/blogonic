@@ -3,6 +3,9 @@
 
 @section('page_content')
 
+<a class="floating_icon white_border" href="#comment_form"><i class="fa-solid fa-reply"></i></a>
+
+
     <div id="post_wrapper" class="flex flex_col align_ctr">
 
         <div id="back_icon" onclick="location.href='{{ route('posts') }}';"> <i class="fa-solid fa-arrow-left "></i> </div>
@@ -45,6 +48,9 @@
         <div id="comment_form" class="comment_form">
             <form class="flex flex_col" action="{{route('post.add_comment', ['slug' => $post->slug])}}" method="POST">
                 @csrf
+                @error('content')
+                    <small class="notification_error notification_bar"> **{{$message}} </small>
+                @enderror
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="post a comment"> </textarea>
                 <button type="submit">POST</button>
             </form>

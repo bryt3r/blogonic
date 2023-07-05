@@ -64,7 +64,6 @@
             </div>
         </nav>
 
-            <a class="floating_icon white_border" href="#"><i class="fa-solid fa-pencil fa-2x"></i></a>
        
 
         <div id="main" class = "flex flex_col align_ctr">

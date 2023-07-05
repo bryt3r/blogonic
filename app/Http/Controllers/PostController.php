@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('comments', 'likes')->paginate(10);
+        $posts = Post::with('comments', 'likes')->latest()->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -39,10 +39,10 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->slug = $slug;
         $post->user_id = $request->user()->id;
+        // return $post;
         $post->save();
 
-
-        return back();
+        return back()->with('success', 'post created successfully');
     }
 
     /**
