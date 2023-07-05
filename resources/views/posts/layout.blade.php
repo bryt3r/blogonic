@@ -29,18 +29,18 @@
 
 <body>
     
-    <div id="page_container">
+    <div id="page_container" class="flex flex_col">
         
         <nav id="navbar">
-            <div id="nav_content" class="flex_row">
-                <div id="" class="">
+            <div id="nav_content" class="flex flex_row justify_btw">
+                <div id="site_logo" class="">
                     <a href="{{ route('home') }}"> {{ config('app.name', 'Laravel') }} </a>
                 </div>
 
-                <ul id="nav_toggle" class="nav_links flex_row">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('posts') }}">Posts</a></li>
-                    <li>
+                <div id="nav_toggle" class="nav_links flex flex_row align_ctr justify_arnd">
+                    <div><a href="{{ route('home') }}">Home</a></div>
+                    <div><a href="{{ route('posts') }}">Posts</a></div>
+                    <div>
                         @if (Auth::user())
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -55,19 +55,18 @@
                             <a href="/login">Login</a>
                         @endif
                         
-                    </li>
-                </ul>
+                    </div>
+                </div>
 
-                <div class="menu_icon" id="menu_icon">
-                    <i class="fa-solid fa-bars"></i>
+                <div class="menu_icon white_border" id="menu_icon">
+                    <i class="fa-solid fa-bars fa-2x"></i>
                 </div>
             </div>
         </nav>
-        <div class="floating_icon">
-            <a href="#"><i class="fa-solid fa-pencil fa-2x"></i></a>
-        </div>
 
-        <div id="main">
+       
+
+        <div id="main" class = "flex flex_col align_ctr">
             <div class=""> @include('inc.messages') </div>
             
             @yield('page_content')
@@ -75,8 +74,8 @@
         </div>
     
             <!-- FOOTER  -->
-            <footer id="footer">
-                    
+            <footer id="footer" class="flex margin_ctr">
+               <span>&copy; 2023 </span>    
             </footer>
     </div>
 

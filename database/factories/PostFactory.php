@@ -18,11 +18,10 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->sentence(8);
+        $content = fake()->paragraph(15);
         return [
-            'title' => $title,
-            'slug' => Str::slug($title),
-            'content' => fake()->paragraph(15),
+            'slug' => Str::slug(substr($content,0,15)).uniqid('-'),
+            'content' => $content,
             'user_id' => rand(1, 10)
         ];
     }
