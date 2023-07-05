@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
     {{-- favicon --}}
      {{-- <link rel="icon" type="image/x-icon" href="{{asset('assets/favicons/favicon.ico')}}"> --}}
@@ -32,7 +32,7 @@
     <div id="page_container" class="flex flex_col">
         
         <nav id="navbar">
-            <div id="nav_content" class="flex flex_row justify_btw">
+            <div id="nav_content" class="flex flex_row justify_btw align_ctr">
                 <div id="site_logo" class="">
                     <a href="{{ route('home') }}"> {{ config('app.name', 'Laravel') }} </a>
                 </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="menu_icon white_border" id="menu_icon">
+                <div class="menu_icon" id="menu_icon">
                     <i class="fa-solid fa-bars fa-2x"></i>
                 </div>
             </div>

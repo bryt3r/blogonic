@@ -15,7 +15,7 @@
                         <div class="user_avatar">{{$post->user->initials()}}</div>
                         <div class="post_box_body flex flex_row justify_arnd">
                             <div class="content_wrapper">
-                                <div class="post_info flex justify_arnd"><span>{{$post->user->name}}</span> <span> {{date_format($post->created_at, "d M, Y")}}</span></div>
+                                <div class="post_info flex justify_arnd"><span> {{$post->user->name}}</span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
                                
                                 <div class="content_box">{{ Str::limit( $post->content, '160' ) }}</div>    
                             </div>
