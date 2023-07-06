@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,9 @@ Route::post('/post', [PostController::class, 'store'])->middleware('auth')->name
 Route::get('/posts/view/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts/{slug}/comment', [PostController::class, 'add_comment'])->middleware('auth')->name('post.add_comment');
 Route::post('/posts/{slug}/like', [PostController::class, 'like_post'])->middleware('auth')->name('post.like');
+
+Route::get('/user/{username}', [UserController::class, 'view_user'])->name('view_user');
+Route::get('/my_profile', [UserController::class, 'my_profile'])->name('my_profile')->middleware('auth');
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 

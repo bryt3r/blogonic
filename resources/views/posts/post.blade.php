@@ -14,18 +14,29 @@
             <div class="user_avatar">{{$post->user->initials()}}</div>
             <div class="post_box_body flex flex_col justify_arnd">
                 <div class="content_wrapper">
-                    <div class="post_info flex justify_arnd"><span> {{$post->user->name}}</span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
+                    <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $post->user->username])}}">{{$post->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
                     <div class="content_box">{{  $post->content }}</div>    
                 </div>
                 <div class="post_box_icons flex flex_row justify_arnd">
                     <div class="post_box_icon flex justify_btw align_ctr"> <i class="fa-regular fa-comment"></i> {{$post->comments->count()}} </div>
-                    {{-- <div class="post_box_icon flex justify_btw align_ctr">
-                         <i class="fa-solid fa-thumbs-up"></i> {{$post->likes->count()}}
-                    </div> --}}
+                    @if ($post->liked())
                     <form method="POST" action="{{ route('post.like', ['slug' => $post->slug]) }}">
                         @csrf
-                        <button class="post_box_icon flex justify_btw align_ctr" type="submit"> <i class="fa-solid fa-thumbs-up"></i> {{$post->likes->count()}}</button>
+                        <button class="post_box_icon liked flex justify_btw align_ctr" type="submit">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            {{$post->likes->count()}}
+                        </button>
                     </form>
+                @else
+                    <form method="POST" action="{{ route('post.like', ['slug' => $post->slug]) }}">
+                        @csrf
+                        <button class="post_box_icon flex justify_btw align_ctr" type="submit">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            {{$post->likes->count()}}
+                        </button>
+                    </form>
+                @endif
+
                     <div class="post_box_icon flex justify_btw align_ctr" onclick="location.href='#comment_form';"> 
                         <i class="fa-solid fa-reply"></i> Reply 
                     </div>
@@ -37,7 +48,7 @@
                 <div class="comment_box flex flex_row justify_arnd margin_ctr">
                     <div class="user_avatar">{{$comment->user->initials()}}</div>
                     <div class="content_wrapper">
-                        <div class="post_info flex justify_arnd"><span> {{$comment->user->name}}</span> <span> posted: {{date_format($comment->created_at, "d M, Y")}}</span></div>
+                        <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $post->user->username])}}">{{$post->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
                     
                         <div class="content_box">{{  $comment->content }}</div>    
                     </div>

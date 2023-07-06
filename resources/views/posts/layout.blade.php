@@ -14,7 +14,8 @@
 
     {{-- favicon --}}
      {{-- <link rel="icon" type="image/x-icon" href="{{asset('assets/favicons/favicon.ico')}}"> --}}
-
+ <!-- Scripts -->
+ @vite(['resources/css/app.css', 'resources/js/app.js'])
      <!-- Custom CSS -->
      {{-- <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}" > --}}
      <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
@@ -40,19 +41,22 @@
                 <div id="nav_toggle" class="nav_links flex flex_row align_ctr justify_arnd">
                     <div><a href="{{ route('home') }}">Home</a></div>
                     <div><a href="{{ route('posts') }}">Posts</a></div>
-                    <div>
+                    @if (Auth::user())
+                        <div><a href="{{ route('my_profile') }}">Profile</a></div>
+                    @endif
+                        <div>
                         @if (Auth::user())
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <div href="route('logout')"
+                                <div class="white_border pointer p4" href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </div>
                             </form>
                         @else 
-                            <a href="/login">Login</a>
+                            <a class="white_border pointer p4" href="/login">Login</a>
                         @endif
                         
                     </div>
