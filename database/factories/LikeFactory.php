@@ -17,7 +17,8 @@ class LikeFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id' => rand(1, 28)
+            'post_id' => rand(1, 28),
+            'user_id' => rand(1, 9)
         ];
     }
 }

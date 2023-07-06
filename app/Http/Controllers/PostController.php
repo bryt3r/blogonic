@@ -39,7 +39,6 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->slug = $slug;
         $post->user_id = $request->user()->id;
-        // return $post;
         $post->save();
 
         return back()->with('success', 'post created successfully');
@@ -51,7 +50,6 @@ class PostController extends Controller
     public function show(string $slug)
     {
         $post = Post::with('comments', 'likes')->where('slug', $slug)->firstOrFail();
-        // return $post;
         return view('posts.post')->with('post', $post);
     }
 
@@ -77,12 +75,19 @@ class PostController extends Controller
         return back();
     }
 
-
     public function like_post(Request $request, String $slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $liked = Like::where('post_id', $post->id)
+        ->where('user_id', $request->user()->id)
+        ->first();
+        if ($liked) {
+            $liked->delete();
+            return back();
+        }
         $like = new Like;
         $like->post_id = $post->id;
+        $like->user_id = $request->user()->id;
         $like->save();
 
         return back();
