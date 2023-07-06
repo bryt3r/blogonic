@@ -98,6 +98,11 @@ a:hover {
     border: 1px solid white;
 }
 
+.white_back {
+    color: purple;
+    background-color: white;
+}
+
 .margin_ctr {
     margin: 0px auto;
 }
@@ -342,7 +347,7 @@ textarea {
         height: 40vh;
         background-color: purple;
         position: absolute;
-        top: 60px;
+        top: 50px;
         right: -15px;
     }
 

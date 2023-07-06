@@ -11,7 +11,11 @@
         <div id="back_icon" onclick="location.href='{{ route('posts') }}';"> <i class="fa-solid fa-arrow-left "></i> </div>
 
         <div class="post_box flex flex_row justify_arnd" > 
-            <div class="user_avatar">{{$post->user->initials()}}</div>
+            <div class="user_avatar">
+                <a href="{{route('view_user', ['username' =>  $post->user->username])}}">
+                {{$post->user->initials()}}
+                </a>
+            </div>
             <div class="post_box_body flex flex_col justify_arnd">
                 <div class="content_wrapper">
                     <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $post->user->username])}}">{{$post->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
@@ -46,9 +50,13 @@
         <div id="comments_wrapper" class="margin_ctr">
             @foreach ($post->comments as $comment)
                 <div class="comment_box flex flex_row justify_arnd margin_ctr">
-                    <div class="user_avatar">{{$comment->user->initials()}}</div>
-                    <div class="content_wrapper">
-                        <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $post->user->username])}}">{{$post->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
+                    <div class="user_avatar">
+                        <a href="{{route('view_user', ['username' =>  $comment->user->username])}}">
+                        {{$comment->user->initials()}}
+                        </a>
+                    </div> 
+                     <div class="content_wrapper">
+                        <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $comment->user->username])}}">{{$comment->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
                     
                         <div class="content_box">{{  $comment->content }}</div>    
                     </div>

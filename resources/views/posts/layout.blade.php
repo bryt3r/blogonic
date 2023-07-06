@@ -49,14 +49,14 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <div class="white_border pointer p4" href="route('logout')"
+                                <div class="white_back pointer p4" href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </div>
                             </form>
                         @else 
-                            <a class="white_border pointer p4" href="/login">Login</a>
+                            <a class="white_back pointer p4" href="/login">Login</a>
                         @endif
                         
                     </div>
@@ -79,7 +79,7 @@
     
             <!-- FOOTER  -->
             <footer id="footer" class="flex margin_ctr">
-               <span>&copy; 2023 </span>    
+               <span>&copy; 2023 {{ config('app.name', 'Laravel') }}</span>    
             </footer>
     </div>
 

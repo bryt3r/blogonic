@@ -4,15 +4,20 @@
 @section('page_content')
 
 <a id="modal_open_btn" class="floating_icon white_border" href="#"><i class="fa-solid fa-pencil fa-2x"></i></a>
-
+<div id="posts_wrapper" class = "flex flex_col align_ctr"> 
         @if (count($posts) < 1)
 
             'NO POSTS'
+            
         @else 
-            <div id="posts_wrapper" class = "flex flex_col align_ctr"> 
+            
                 @foreach ($posts as $post)
                     <div class="post_box flex flex_row justify_arnd"  > 
-                        <div class="user_avatar">{{$post->user->initials()}}</div>
+                        <div class="user_avatar">
+                            <a href="{{route('view_user', ['username' =>  $post->user->username])}}">
+                            {{$post->user->initials()}}
+                            </a>
+                        </div>
                         <div class="post_box_body flex flex_row justify_arnd">
                             <div class="content_wrapper">
                                 <div class="post_info flex justify_arnd"><span> <a href="{{route('view_user', ['username' =>  $post->user->username])}}">{{$post->user->username}}</a></span> <span> posted: {{date_format($post->created_at, "d M, Y")}}</span></div>
