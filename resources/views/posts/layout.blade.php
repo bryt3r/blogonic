@@ -34,7 +34,8 @@
         
         <nav id="navbar">
             <div id="nav_content" class="flex flex_row justify_btw align_ctr">
-                <div id="site_logo" class="">
+                <div id="site_logo" class="flex flex_row">
+                    <i class="fa-solid fa-comments"></i>
                     <a href="{{ route('home') }}"> {{ config('app.name', 'Laravel') }} </a>
                 </div>
 

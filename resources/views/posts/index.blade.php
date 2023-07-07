@@ -5,6 +5,9 @@
 
 <a id="modal_open_btn" class="floating_icon white_border" href="#"><i class="fa-solid fa-pencil fa-2x"></i></a>
 <div id="posts_wrapper" class = "flex flex_col align_ctr"> 
+
+    <i class="fa-solid fa-comments fa-2x"></i>
+
         @if (count($posts) < 1)
 
             'NO POSTS'
