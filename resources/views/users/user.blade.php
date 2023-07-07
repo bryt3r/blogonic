@@ -11,7 +11,7 @@
         </div>
         <div>
             <p>Name: {{ucwords($user->name)}} </p> 
-            <p>Username: ({{$user->username}}) </p>
+            <p>Username: {{$user->username}} </p>
         </div>
         <div class="user_stats flex flex_col margin_ctr align_ctr">
             <div class="flex flex_row justify_btw stat_box white_border">

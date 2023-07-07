@@ -15,19 +15,21 @@ class UserController extends Controller
         return view('users.user')->with('user', $user);
     }
 
-    public function my_profile() {
+    public function my_profile()
+    {
         $username = Auth::user()->username;
         $user = $this->get_user($username);
         return view('users.user')->with('user', $user);
     }
 
 
-    private function get_user($username) {
+    private function get_user($username)
+    {
 
-       $user = User::with('posts', 'comments', 'likes')
-        ->where('username', $username)
-        // ->select('name', 'username','created_at', 'posts', 'comments', 'likes')
-        ->first();
+        $user = User::where('username', $username)
+            ->select(['id', 'name', 'username', 'created_at'])
+            ->with('posts:id,user_id', 'comments:id,user_id', 'likes:id,user_id')
+            ->first();
 
         return $user;
     }

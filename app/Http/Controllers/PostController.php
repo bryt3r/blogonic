@@ -17,7 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('comments', 'likes')->latest()->paginate(10);
+        $posts = Post::select(['id', 'content', 'slug', 'user_id', 'created_at'])
+            ->latest()
+            ->with('user:id,username,name', 'comments:id,post_id', 'likes:id,post_id,user_id')
+            ->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -49,7 +52,11 @@ class PostController extends Controller
      */
     public function show(string $slug)
     {
-        $post = Post::with('comments', 'likes')->where('slug', $slug)->firstOrFail();
+        $post = Post::where('slug', $slug)
+            ->select(['id', 'content', 'slug', 'user_id', 'created_at'])
+            ->latest()
+            ->with('comments:id,content,user_id,post_id,created_at', 'likes:id,post_id,user_id')
+            ->firstOrFail();
         return view('posts.post')->with('post', $post);
     }
 
@@ -79,8 +86,8 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
         $liked = Like::where('post_id', $post->id)
-        ->where('user_id', $request->user()->id)
-        ->first();
+            ->where('user_id', $request->user()->id)
+            ->first();
         if ($liked) {
             $liked->delete();
             return back();
